@@ -12,4 +12,4 @@ mkdir ../src && cp -a * ../src/ && mv ../src ./src
 
 mkdir $BOSH_INSTALL_TARGET/bin
 
-go build -o $BOSH_INSTALL_TARGET/bin/cpi src/github.com/cppforlife/bosh-warden-cpi/main/*.go
+go build -o $BOSH_INSTALL_TARGET/bin/cpi src/github.com/cppforlife/bosh-scaleway-cpi/main/*.go

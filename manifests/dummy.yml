@@ -18,7 +18,7 @@ jobs:
 resource_pools:
 - name: default
   stemcell:
-    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    name: bosh-scaleway-boshlite-ubuntu-trusty-go_agent
     version: latest
   network: default
   cloud_properties: {}

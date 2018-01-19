@@ -15,6 +15,9 @@ blobs
 *#
 #*
 
+src/github.com/daniellavoie/bosh-scaleway-cpi/vendor
+src/github.com/daniellavoie/bosh-scaleway-cpi/Gopkg.lock
+
 .vagrant/
 tmp
 

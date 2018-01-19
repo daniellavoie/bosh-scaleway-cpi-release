@@ -1,6 +1,6 @@
 - type: replace
-  path: /releases/name=bosh-warden-cpi/url
-  value: file://((warden_cpi_path))
+  path: /releases/name=bosh-scaleway-cpi/url
+  value: file://((scaleway_cpi_path))
 
 - type: remove
-  path: /releases/name=bosh-warden-cpi/sha1
+  path: /releases/name=bosh-scaleway-cpi/sha1

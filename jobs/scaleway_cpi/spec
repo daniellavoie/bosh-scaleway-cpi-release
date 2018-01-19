@@ -1,0 +1,97 @@
+---
+name: scaleway_cpi
+
+templates:
+  cpi.erb: bin/cpi
+  cpi_ctl.erb: bin/cpi_ctl
+  cpi.json.erb: config/cpi.json
+  sudoers: config/sudoers
+
+packages:
+- scaleway_cpi
+
+properties:
+  scaleway_cpi.host_ip:
+    description: "IP address of the host that will be used by containers, must be the same as mbus IP"
+    example: "10.254.50.4"
+
+  scaleway_cpi.loopback_range:
+    description: "Range of loopback devices that will be used by the CPI for mounting persistent disks (example shows /dev/loop100 to /dev/loop130)"
+    example: [100, 130]
+
+  scaleway_cpi.no_masq_cidrs:
+    description: |
+      Do not masquerade NAT traffic internally.
+      Related: https://github.com/cloudfoundry/bosh-lite/pull/364
+    default: ["10.244.0.0/16"]
+
+  scaleway_cpi.scaleway.connect_network:
+    description: "Connection type scaleway client will use to connect (tcp or unix)"
+
+  scaleway_cpi.scaleway.connect_address:
+    description: "Address scaleway client will use to connect (ip:port or sock path)"
+
+  scaleway_cpi.agent.mbus:
+    description: "Mbus URL used by deployed BOSH agents"
+    example: "nats://nats:nats-password@10.254.50.4:4222"
+
+  scaleway_cpi.agent.ntp:
+    description: "NTP configuration used by deployed BOSH agents"
+    default: []
+
+  scaleway_cpi.agent.blobstore.provider:
+    description: "Provider type for the blobstore used by deployed BOSH agents (e.g. dav, s3)"
+    default: "dav"
+
+  scaleway_cpi.agent.blobstore.options:
+    description: "Options for the blobstore used by deployed BOSH agents"
+    default: {}
+
+  scaleway_cpi.actions.stemcells_dir:
+    description: "Directory where stemcells are stored"
+    default: "/var/vcap/store/scaleway_cpi/stemcells"
+
+  scaleway_cpi.actions.expand_stemcell_tarball:
+    description: "Wether or not to untar stemcells, setting this to false simply gunzips it, enabling the CPI to be used with GrootFS"
+    default: true
+
+  scaleway_cpi.actions.disks_dir:
+    description: "Directory where disks are stored"
+    default: "/var/vcap/store/scaleway_cpi/disks"
+
+  scaleway_cpi.actions.host_ephemeral_bind_mounts_dir:
+    description: "Directory with sub-directories at which ephemeral disks are mounted on the host"
+    default: "/var/vcap/store/scaleway_cpi/ephemeral_bind_mounts_dir"
+
+  scaleway_cpi.actions.host_persistent_bind_mounts_dir:
+    description: "Directory with sub-directories at which persistent disks are mounted on the host"
+    default: "/var/vcap/store/scaleway_cpi/persistent_bind_mounts_dir"
+
+  scaleway_cpi.actions.guest_ephemeral_bind_mount_path:
+    description: "Path at which ephemeral disk is mounted inside VMs"
+    default: "/var/vcap/data"
+
+  scaleway_cpi.actions.guest_persistent_bind_mounts_dir:
+    description: "Directory with sub-directories at which persistent disks are mounted inside VMs"
+    default: "/scaleway-cpi-dev"
+
+  # Useful for testing bosh create-env (needs to be unnamespaced)
+  scaleway_cpi.enable_registry:
+    description: "Enables use of registry"
+    default: false
+
+  registry.host:
+    description: "Hostname of registry"
+    default: ""
+
+  registry.port:
+    description: "Port of registry"
+    default: 6901
+
+  registry.username:
+    description: "Username for registry"
+    default: ""
+
+  registry.password:
+    description: "Password for registry"
+    default: ""

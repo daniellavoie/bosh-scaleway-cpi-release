@@ -1,0 +1,5 @@
+check process scaleway_cpi
+  with pidfile /var/vcap/sys/run/scaleway_cpi/cpi.pid
+  start program "/var/vcap/jobs/scaleway_cpi/bin/cpi_ctl start"
+  stop program "/var/vcap/jobs/scaleway_cpi/bin/cpi_ctl stop"
+  group vcap

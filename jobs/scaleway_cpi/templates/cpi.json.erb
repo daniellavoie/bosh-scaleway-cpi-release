@@ -1,0 +1,43 @@
+<%=
+
+env_service = p("scaleway_cpi.enable_registry") ? "registry" : "file"
+
+JSON.dump(
+  "scaleway" => {
+    "ConnectNetwork" => p("scaleway_cpi.scaleway.connect_network"),
+    "ConnectAddress" => p("scaleway_cpi.scaleway.connect_address"),
+  },
+
+  "Actions" => {
+    "StemcellsDir" => p("scaleway_cpi.actions.stemcells_dir"),
+    "ExpandStemcellTarball" => p("scaleway_cpi.actions.expand_stemcell_tarball"),
+    "DisksDir"     => p("scaleway_cpi.actions.disks_dir"),
+
+    "HostEphemeralBindMountsDir"  => p("scaleway_cpi.actions.host_ephemeral_bind_mounts_dir"),
+    "HostPersistentBindMountsDir" => p("scaleway_cpi.actions.host_persistent_bind_mounts_dir"),
+
+    "GuestEphemeralBindMountPath"  => p("scaleway_cpi.actions.guest_ephemeral_bind_mount_path"),
+    "GuestPersistentBindMountsDir" => p("scaleway_cpi.actions.guest_persistent_bind_mounts_dir"),
+
+    "Agent" => {
+      "Mbus" => p("scaleway_cpi.agent.mbus"),
+      "NTP"  => p("scaleway_cpi.agent.ntp"),
+
+      "Blobstore" => {
+        "Provider" => p("scaleway_cpi.agent.blobstore.provider"),
+        "Options"  => p("scaleway_cpi.agent.blobstore.options"),
+      },
+    },
+
+    "AgentEnvService" => env_service,
+
+    "Registry" => {
+      "Host" => p("registry.host"),
+      "Port" => p("registry.port"),
+      "Username" => p("registry.username"),
+      "Password" => p("registry.password"),
+    },
+  }
+)
+
+%>
